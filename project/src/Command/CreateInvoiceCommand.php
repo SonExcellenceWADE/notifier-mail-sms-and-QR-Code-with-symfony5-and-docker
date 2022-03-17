@@ -84,7 +84,7 @@ class CreateInvoiceCommand extends Command
 
         foreach ($users as $user){
 
-            $notification = (new Notification('Alerte de Notification pour Mr '.$user->getEmail()))
+            $notification = (new Notification('Alerte de Notification pour Mr '.$user->getName()))
                 ->content('Par la présente, nous vous informons de votre rendez-vous pour la semaine prochaine !.
                 Bonne Réception.
                 Cordialement')
