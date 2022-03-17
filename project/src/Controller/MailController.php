@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\EmailService;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MailController extends AbstractController
@@ -15,26 +15,13 @@ class MailController extends AbstractController
      * @Route("/api/mail", name="app_mail")
      * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function index(MailerInterface $mailer): Response
+    public function index(EmailService $emailService, ManagerRegistry $doctrine): Response
     {
-        $user = new User();
-        $user->setEmail('sonexcellence@orange-sonatel.com')
-            ->setName('Son Excellence WADE')
-            ->setTelephone('+221771295155')
-            ->setIsActived('true');
+        $users =  $doctrine->getRepository(User::class)->find(2);
 
-        $email = (new Email())
-            ->from('sonexcellence@orange-sonatel.com')
-            ->to('papa.wade.1993@gmail.com')
-            ->subject('Envoie de notification Email')
-            ->text('Hello '.$user->getName(). ', nous venons de vous envoyer un email avec votre adresse electronique '.$user->getEmail());
-        $mailer->send($email);
+        $emailService->SendEmail($users);
 
+        return new Response('Email Sended Successfully');
 
-        return new Response('Email Sended Succesfull');
-
-        /*return $this->render('mail/index.html.twig', [
-            'email' => $email->getTextBody()
-        ]);*/
     }
 }

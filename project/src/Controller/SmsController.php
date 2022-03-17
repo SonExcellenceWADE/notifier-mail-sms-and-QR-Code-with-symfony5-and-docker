@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Notifier\Message\SmsMessage;
-use Symfony\Component\Notifier\TexterInterface;
 
 use App\Entity\User;
+use App\Service\SmsService;
+use Symfony\Component\Notifier\TexterInterface;
+
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,30 +18,13 @@ class SmsController extends AbstractController
      * @Route("/api/sms", name="app_sms")
      * @throws \Symfony\Component\Notifier\Exception\TransportExceptionInterface
      */
-    public function index(ManagerRegistry $doctrine, TexterInterface $texter): Response
+    public function index(ManagerRegistry $doctrine, SmsService $smsService): Response
     {
-        $entityManager = $doctrine->getManager();
+        $user =  $doctrine->getRepository(User::class)->find(2);
 
-       $user = new User();
-       $user->setEmail('sonexcellence@orange-sonatel.com')
-           ->setName('Son Excellence WADE')
-           ->setTelephone('+221771295155')
-           ->setIsActived('true');
+        $smsService->sendSMS($user);
 
-        $sms = new SmsMessage(
-        // the phone number to send the SMS message to
-            $user->getTelephone(),
-            // the message
-            'Hello '.$user->getName(). ', nous venons de vous envoyer un sms sur votre numero '.$user->getTelephone()
-        );
-
-        $texter->send($sms);
-
-        $entityManager->persist($user);
-
-        $entityManager->flush();
-
-        return new Response('SMS Sended Succesfull');
+        return new Response('SMS Sended Successfully');
 
 
     }

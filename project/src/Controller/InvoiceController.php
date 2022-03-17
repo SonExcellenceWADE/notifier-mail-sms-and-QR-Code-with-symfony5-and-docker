@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Role;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,7 +21,6 @@ class InvoiceController extends AbstractController
     public function index(NotifierInterface $notifier, ManagerRegistry $doctrine): Response
     {
         $users =  $doctrine->getRepository(User::class)->findBy(['id' => 2]);
-
 
        foreach ($users as $user){
 
