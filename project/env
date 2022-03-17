@@ -28,8 +28,10 @@ MAILER_DSN=smtp://maildev_docker_symfony:25
 # Gmail SHOULD NOT be used on production, use it in development only. by Son Excellence WADE
 MAILER_DSN=gmail://papa.wade.1993@gmail.com:password@default?verify_peer=0
 ###< symfony/google-mailer ###
-###< symfony/mailer ###
+
+
 ###< symfony/sms ###
+#CONGIGURATION TIWILIO SMS BY SON EXCELLENCE WADE
 TWILIO_DSN=twilio://AC00411e0795bbf3e757a90a09f1275379:0575b9ad73542e4889481513d0b040ac@default?from=18627011763
 
 ###> doctrine/doctrine-bundle ###
