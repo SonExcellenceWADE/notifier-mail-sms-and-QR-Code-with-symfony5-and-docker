@@ -1,0 +1,51 @@
+# In all environments, the following files are loaded if they exist,
+# the latter taking precedence over the former:
+#
+#  * .env                contains default values for the environment variables needed by the app
+#  * .env.local          uncommitted file with local overrides
+#  * .env.$APP_ENV       committed environment-specific defaults
+#  * .env.$APP_ENV.local uncommitted environment-specific overrides
+#
+# Real environment variables win over .env files.
+#
+# DO NOT DEFINE PRODUCTION SECRETS IN THIS FILE NOR IN ANY OTHER COMMITTED FILES.
+#
+# Run "composer dump-env prod" to compile .env files for production use (requires symfony/flex >=1.2).
+# https://symfony.com/doc/current/best_practices.html#use-environment-variables-for-infrastructure-configuration
+
+###> symfony/framework-bundle ###
+APP_ENV=dev
+APP_SECRET=ec5763aa03d54c5aaac07a308ff458dc
+###< symfony/framework-bundle ###
+
+###> symfony/mailer ###
+# MAILER_DSN=smtp://localhost
+
+#CONGIGURATION SERVEUR MAILDEV BY SON EXCELLENCE WADE
+MAILER_DSN=smtp://maildev_docker_symfony:25
+
+###> symfony/google-mailer ###
+# Gmail SHOULD NOT be used on production, use it in development only. by Son Excellence WADE
+MAILER_DSN=gmail://papa.wade.1993@gmail.com:password@default?verify_peer=0
+###< symfony/google-mailer ###
+###< symfony/mailer ###
+###< symfony/sms ###
+TWILIO_DSN=twilio://AC00411e0795bbf3e757a90a09f1275379:0575b9ad73542e4889481513d0b040ac@default?from=18627011763
+
+###> doctrine/doctrine-bundle ###
+# Format described at https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
+# IMPORTANT: You MUST configure your server version, either here or in config/packages/doctrine.yaml
+#
+# DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
+DATABASE_URL=mysql://root:@db_docker_symfony:3306/db_symfony5?serverVersion=5.7
+# DATABASE_URL="postgresql://symfony:ChangeMe@127.0.0.1:5432/app?serverVersion=13&charset=utf8"
+###< doctrine/doctrine-bundle ###
+
+###> symfony/twilio-notifier ###
+# TWILIO_DSN=twilio://SID:TOKEN@default?from=FROM
+###< symfony/twilio-notifier ###
+
+###> symfony/google-mailer ###
+# Gmail SHOULD NOT be used on production, use it in development only.
+# MAILER_DSN=gmail://USERNAME:PASSWORD@default
+###< symfony/google-mailer ###
