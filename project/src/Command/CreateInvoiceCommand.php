@@ -63,7 +63,7 @@ class CreateInvoiceCommand extends Command
         $stopwatch = new Stopwatch();
         $stopwatch->start($this->getName());
 
-        $users =  $this->doctrine->getRepository(User::class)->findBy(['id' => 2]);
+        $users =  $this->doctrine->getRepository(User::class)->findBy(['name' => 'Son Excellence WADE']);
 
         if (!$users) {
             $this->io->note('Users are not found');
@@ -75,7 +75,7 @@ class CreateInvoiceCommand extends Command
         $this->sendingSmsEmail($users);
 
         $this->io->success(sprintf('was successfully sended email and sms for users by Son Excellence WADE'));
-        /*$stopwatch->stop($this->getName());*/
+        $stopwatch->stop($this->getName());
 
         return Command::SUCCESS;
     }
@@ -84,8 +84,11 @@ class CreateInvoiceCommand extends Command
 
         foreach ($users as $user){
 
-            $notification = (new Notification('Hello '.$user->getName()))
-                ->content('Nous venons de vous envoyer une notification par email et sms')
+            $notification = (new Notification('Alerte de Notification pour Mr '.$user->getEmail()))
+                ->content('Par la présente, nous vous informons de votre rendez-vous pour la semaine prochaine !.
+                Bonne Réception.
+                Cordialement')
+                ->emoji('@Author: Son Excellence WADE IT Engineer | Fullstack Developer')
                 ->importance(Notification::IMPORTANCE_HIGH);
 
             // The receiver of the Notification
