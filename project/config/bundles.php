@@ -12,4 +12,6 @@ return [
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
+    Cron\CronBundle\CronCronBundle::class => ['all' => true],
+    Eniams\Notifier\LinkedIn\LinkedInNotifierBundle::class => ['all' => true]
 ];

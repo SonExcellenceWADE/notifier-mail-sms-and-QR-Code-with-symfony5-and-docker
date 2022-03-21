@@ -15,11 +15,11 @@ class MailController extends AbstractController
      * @Route("/api/mail", name="app_mail")
      * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function index(EmailService $emailService, ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
-        $users =  $doctrine->getRepository(User::class)->find(2);
+        $user =  $doctrine->getRepository(User::class)->find(2);
 
-        $emailService->SendEmail($users);
+        $this->dispatchMessage($user);
 
         return new Response('Email Sended Successfully');
 
