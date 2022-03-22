@@ -38,10 +38,6 @@ class EmailService implements MessageHandlerInterface
                Bonne Réception.
                Cordialement !!!');
 
-        sleep(10);
-
-        dd($email);
-
         $this->mailer->send($email);
     }
 }

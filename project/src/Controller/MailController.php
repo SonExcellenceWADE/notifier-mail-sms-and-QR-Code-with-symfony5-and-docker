@@ -17,7 +17,7 @@ class MailController extends AbstractController
      */
     public function index(ManagerRegistry $doctrine): Response
     {
-        $user =  $doctrine->getRepository(User::class)->find(2);
+        $user =  $doctrine->getRepository(User::class)->find(1);
 
         $this->dispatchMessage($user);
 

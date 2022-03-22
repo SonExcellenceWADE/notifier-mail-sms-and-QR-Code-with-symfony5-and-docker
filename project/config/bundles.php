@@ -13,5 +13,6 @@ return [
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     Cron\CronBundle\CronCronBundle::class => ['all' => true],
-    Eniams\Notifier\LinkedIn\LinkedInNotifierBundle::class => ['all' => true]
+    Eniams\Notifier\LinkedIn\LinkedInNotifierBundle::class => ['all' => true],
+    Endroid\QrCodeBundle\EndroidQrCodeBundle::class => ['all' => true],
 ];
