@@ -16,8 +16,9 @@ class UserService
 
     }
 
-    public function createUser($user){
+    public function createUser($user, $role){
 
+   $this->doctrine->getManager()->persist($role);
    $this->doctrine->getManager()->persist($user);
    $this->doctrine->getManager()->flush();
 

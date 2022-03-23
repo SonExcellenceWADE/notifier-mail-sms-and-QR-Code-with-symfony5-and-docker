@@ -63,7 +63,7 @@ class CreateInvoiceCommand extends Command
         $stopwatch = new Stopwatch();
         $stopwatch->start($this->getName());
 
-        $users =  $this->doctrine->getRepository(User::class)->findBy(['name' => 'Son Excellence WADE']);
+        $users =  $this->doctrine->getRepository(User::class)->findBy(['name' => 'Abdoulaye WADE']);
 
         if (!$users) {
             $this->io->note('Users are not found');
@@ -84,7 +84,7 @@ class CreateInvoiceCommand extends Command
 
         foreach ($users as $user){
 
-            $notification = (new Notification('Alerte de Notification pour Mr '.$user->getName()))
+            $notification = (new Notification('Notification Email et SMS À M '.$user->getName()))
                 ->content('Par la présente, nous vous informons de votre rendez-vous pour la semaine prochaine !.
                 Bonne Réception.
                 Cordialement')

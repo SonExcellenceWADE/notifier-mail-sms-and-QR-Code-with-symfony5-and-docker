@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Role;
 use App\Entity\User;
 use App\Service\UserService;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,13 +17,16 @@ class UserController extends AbstractController
      */
     public function index(UserService $userService): Response
     {
+         $role = new  Role();
+         $role->setTitle('ROLE_ADMIN');
         $user = new User();
-        $user->setEmail('abdoulaye.wade@orange-sonatel.com')
+        $user->setEmail('papa.wade.1993@gmail.com')
             ->setName('Abdoulaye WADE')
             ->setTelephone('+221771295155')
-            ->setIsActived('true');
+            ->setIsActived('true')
+            ->addUserRole($role);
 
-        $userService->createUser($user);
+        $userService->createUser($user, $role);
 
         return new Response('User Created Successfully');
 

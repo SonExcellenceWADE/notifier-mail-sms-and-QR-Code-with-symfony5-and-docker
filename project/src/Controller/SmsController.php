@@ -20,7 +20,7 @@ class SmsController extends AbstractController
      */
     public function index(ManagerRegistry $doctrine, SmsService $smsService): Response
     {
-        $user =  $doctrine->getRepository(User::class)->find(2);
+        $user =  $doctrine->getRepository(User::class)->find(1);
 
         $smsService->sendSMS($user);
 

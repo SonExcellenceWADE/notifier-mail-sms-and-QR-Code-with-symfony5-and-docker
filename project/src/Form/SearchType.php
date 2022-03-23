@@ -12,9 +12,10 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => false
-            ])
+            ->add('firstname', TextType::class, ['label' => false])
+            ->add('secondname', TextType::class, ['label' => false])
+            ->add('email', TextType::class, ['label' => false])
+            ->add('profession', TextType::class, ['label' => false])
         ;
     }
 

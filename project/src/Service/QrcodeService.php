@@ -23,25 +23,31 @@ class QrcodeService
         $this->builder = $builder;
     }
 
-    public function qrcode($query): string
+    public function qrcode($data): string
     {
-        $url = 'https://www.google.com/search?q=';
+
+        /** @var TYPE_NAME $profil */
+        $profil = nl2br(
+            'Prenom: '.$data['firstname'].
+
+            ' Nom : '.$data['secondname'].
+
+            ' Profession: '.$data['profession']);
 
         $path = dirname(__DIR__, 2).'/public/assets/';
 
         $result = $this->builder
-            ->data($url.$query)
+            ->data($profil)
             ->encoding(new Encoding('UTF-8'))
             ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
-            ->size(400)
+            ->size(300)
             ->margin(10)
-            ->logoPath($path.'img/coudepouce.png')
-            ->logoResizeToWidth('95')
-            ->logoResizeToHeight('95')
+            ->logoPath($path.'img/sonexcellence.jpg')
+            ->logoResizeToWidth('50')
+            ->logoResizeToHeight('50')
             ->logoPunchoutBackground(true)
-            ->backgroundColor(new Color(203, 229, 236))
-            ->build()
-           ;
+            ->backgroundColor(new Color(249, 250, 250))
+            ->build();
 
         //generate name
         $namePng = uniqid('', '') . '.png';
